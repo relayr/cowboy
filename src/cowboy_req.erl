@@ -615,14 +615,14 @@ body_decode(Req=#http_req{buffer=Data, body_state={stream, _,
 		{more, Data2, Rest, TState2} ->
 			{more, CDecode(Data2), Req#http_req{body_state={stream, 0,
 				TDecode, TState2, CDecode}, buffer=Rest}};
-		{done, TotalLength, Rest} ->
-			{ok, {ok, <<>>}, body_decode_end(Req, TotalLength, Rest)};
-		{done, Data2, TotalLength, Rest} ->
-			{ok, CDecode(Data2), body_decode_end(Req, TotalLength, Rest)}
+		{done, _, Rest} ->
+			{ok, {ok, <<>>}, body_decode_end(Req, Rest)};
+		{done, Data2, _, Rest} ->
+			{ok, CDecode(Data2), body_decode_end(Req, Rest)}
 	end.
 
-body_decode_end(Req=#http_req{headers=Headers, p_headers=PHeaders},
-		TotalLength, Rest) ->
+body_decode_end(Req=#http_req{headers=Headers, p_headers=PHeaders, body_state = BodyState}, Rest) ->
+	{stream, _, _TDecode, {_, TotalLength}, _CDecode} = BodyState,
 	Headers2 = lists:keystore(<<"content-length">>, 1, Headers,
 		{<<"content-length">>, integer_to_binary(TotalLength)}),
 	%% At this point we just assume TEs were all decoded.
