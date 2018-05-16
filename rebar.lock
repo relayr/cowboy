@@ -1,8 +1,10 @@
-[{<<"cowlib">>,
-  {git,"git://github.com/extend/cowlib.git",
-       {ref,"d544a494af4dbc810fc9c15eaf5cc050cced1501"}},
-  0},
+{"1.1.0",
+[{<<"cowlib">>,{pkg,<<"cowlib">>,<<"2.1.0">>},0},
  {<<"ranch">>,
   {git,"git://github.com/extend/ranch.git",
        {ref,"adf1822defc2b7cfdc7aca112adabfa1d614043c"}},
-  0}].
+  0}]}.
+[
+{pkg_hash,[
+ {<<"cowlib">>, <<"F73658B93DD043AF40400C3E4FD997068EBD0C617F8C8F4CD003A1A78EBF94F5">>}]}
+].
