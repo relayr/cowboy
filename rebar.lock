@@ -1,8 +1,8 @@
 {"1.1.0",
 [{<<"cowlib">>,{pkg,<<"cowlib">>,<<"2.1.0">>},0},
  {<<"ranch">>,
-  {git,"git://github.com/extend/ranch.git",
-       {ref,"adf1822defc2b7cfdc7aca112adabfa1d614043c"}},
+  {git,"git://github.com/relayr/ranch.git",
+       {ref,"8b5970467003329e65b3f2ed4400bba4b98b8531"}},
   0}]}.
 [
 {pkg_hash,[
