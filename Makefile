@@ -13,7 +13,7 @@ PLT_APPS = crypto public_key ssl
 # Dependencies.
 
 DEPS = cowlib ranch
-dep_cowlib = hex 2.1.0
+dep_cowlib = hex 2.6.0
 dep_ranch = git https://github.com/relayr/ranch.git relayr_dev
 
 TEST_DEPS = ct_helper gun
