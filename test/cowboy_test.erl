@@ -148,22 +148,22 @@ init_common_groups(Name = spdy_compress, Config, Mod) ->
 %% Support functions for testing using Gun.
 
 gun_open(Config) ->
-	gun_open(Config, []).
+	gun_open(Config, #{}).
 
 gun_open(Config, Opts) ->
 	{ok, ConnPid} = gun:open("localhost", config(port, Config),
-		[{retry, 0}, {type, config(type, Config)}|Opts]),
+		Opts#{retry => 0, transport => config(type, Config)}),
 	ConnPid.
 
 gun_monitor_open(Config) ->
-	gun_monitor_open(Config, []).
+	gun_monitor_open(Config, #{}).
 
 gun_monitor_open(Config, Opts) ->
 	ConnPid = gun_open(Config, Opts),
 	{ConnPid, monitor(process, ConnPid)}.
 
 gun_is_gone(ConnPid, MRef) ->
-	receive {'DOWN', MRef, process, ConnPid, gone} -> ok
+	receive {'DOWN', MRef, process, ConnPid, _} -> ok
 	after 500 -> error(timeout) end.
 
 %% Support functions for testing using a raw socket.

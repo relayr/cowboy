@@ -65,7 +65,7 @@ init_dispatch(Config) ->
 %% Convenience functions.
 
 do_get(ConnPid, MRef, Host, Path) ->
-	StreamRef = gun:get(ConnPid, Path, [{":host", Host}]),
+	StreamRef = gun:get(ConnPid, Path, [{<<"host">>, Host}]),
 	{response, IsFin, Status, _} = gun:await(ConnPid, StreamRef, MRef),
 	{IsFin, Status}.
 
@@ -102,7 +102,7 @@ echo_body_multi(Config) ->
 	BodyChunk = << 0:80000 >>,
 	StreamRef = gun:post(ConnPid, "/echo/body", [
 		%% @todo I'm still unhappy with this. It shouldn't be required...
-		{<<"content-length">>, integer_to_list(byte_size(BodyChunk) * 10)},
+		{<<"content-length">>, integer_to_binary(byte_size(BodyChunk) * 10)},
 		{<<"content-type">>, "application/octet-stream"}
 	]),
 	_ = [gun:data(ConnPid, StreamRef, nofin, BodyChunk) || _ <- lists:seq(1, 9)],
