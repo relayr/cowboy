@@ -400,7 +400,7 @@ headers_dupe(Config) ->
 	gun_is_gone(ConnPid, MRef).
 
 http10_chunkless(Config) ->
-	{ConnPid, MRef} = gun_monitor_open(Config, [{http, [{version, 'HTTP/1.0'}]}]),
+	{ConnPid, MRef} = gun_monitor_open(Config, #{http_opts => #{version => 'HTTP/1.0'}}),
 	Ref = gun:get(ConnPid, "/chunked_response"),
 	{response, nofin, 200, Headers} = gun:await(ConnPid, Ref, MRef),
 	false = lists:keyfind(<<"transfer-encoding">>, 1, Headers),
@@ -983,7 +983,7 @@ stream_body_set_resp_chunked(Config) ->
 	ok.
 
 stream_body_set_resp_chunked10(Config) ->
-	{ConnPid, MRef} = gun_monitor_open(Config, [{http, [{version, 'HTTP/1.0'}]}]),
+	{ConnPid, MRef} = gun_monitor_open(Config, #{http_opts => #{version => 'HTTP/1.0'}}),
 	Ref = gun:get(ConnPid, "/stream_body/set_resp_chunked"),
 	{response, nofin, 200, Headers} = gun:await(ConnPid, Ref, MRef),
 	false = lists:keyfind(<<"transfer-encoding">>, 1, Headers),

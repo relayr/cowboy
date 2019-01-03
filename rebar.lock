@@ -1,10 +1,10 @@
 {"1.1.0",
-[{<<"cowlib">>,{pkg,<<"cowlib">>,<<"2.1.0">>},0},
+[{<<"cowlib">>,{pkg,<<"cowlib">>,<<"2.6.0">>},0},
  {<<"ranch">>,
   {git,"git://github.com/relayr/ranch.git",
-       {ref,"8b5970467003329e65b3f2ed4400bba4b98b8531"}},
+       {ref,"0406c961cce7038ab1b7a11f81343d48bfd687c2"}},
   0}]}.
 [
 {pkg_hash,[
- {<<"cowlib">>, <<"F73658B93DD043AF40400C3E4FD997068EBD0C617F8C8F4CD003A1A78EBF94F5">>}]}
+ {<<"cowlib">>, <<"8AA629F81A0FC189F261DC98A42243FA842625FEEA3C7EC56C48F4CCDB55490F">>}]}
 ].
